@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance</title>
+</head>
+<body>
+    <h1>Student Performance</h1>
+    <div id="students"></div>
+
+    <script>
+        fetch('http://127.0.0.1:5000/students')
+            .then(response => response.json())
+            .then(data => {
+                const studentsDiv = document.getElementById('students');
+                data.forEach(student => {
+                    const studentDiv = document.createElement('div');
+                    studentDiv.innerHTML = `Student ID: ${student.student_id}, GPA: ${student.gpa}`;
+                    studentsDiv.appendChild(studentDiv);
+                });
+            });
+    </script>
+</body>
+</html>
